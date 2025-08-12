@@ -6,10 +6,50 @@
     "allowImportingTsExtensions": true,
     "strict": true,
     "noEmit": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "vue/ref-macros"
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/assets/*": [
+        "./src/assets/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "src/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "*.html",
+    "vite.config.*",
+    "vitest.config.*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public"
+  ],
+  "vueCompilerOptions": {
+    "target": 3
+  }
 }
