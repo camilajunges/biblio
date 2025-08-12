@@ -27,12 +27,58 @@
       setup() {
         const pageTitle = ref('Library Management System');
         const tagLine = ref('Efficiently manage your entire book collection with ease.');
+        const features = ref([
+          { name: 'CRUD Operations', description: 'Create, Read, Update and Delete book and author records effortlessly.' },
+          { name: 'Intuitive Interface', description: 'A clean and simple user interface designed for fast and easy navigation.' },
+          { name: 'Search and Filter', description: 'Find books quickly with powerful search and filtering options.' },
+          { name: 'Responsible Design', description: 'Access your library system from any device, big or small.' }
+        ]);
+        const ctaText = ref('Get started');
+
+        const handleCtaClick = () => {
+          console.log('Call to action button clicked!');
+        };
 
         return {
           pageTitle,
-          tagLine
+          tagLine,
+          features,
+          ctaText,
+          handleCtaClick
         }
-      }
+      },
+      template: `
+      <div class="flex flex-col md:flex-row">
+                    <!-- Left side - Hero section -->
+                    <div class="flex-1 p-8 sm:p-12 md:p-16 bg-blue-600 text-white flex flex-col justify-center items-start">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{{ pageTitle }}</h1>
+                        <p class="text-lg sm:text-xl md:text-2xl mb-8 opacity-90">{{ tagline }}</p>
+                        <button
+                            @click="handleCtaClick"
+                            class="bg-white text-blue-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+                            {{ ctaText }}
+                        </button>
+                    </div>
+
+                    <!-- Right side - Features section -->
+                    <div class="flex-1 p-8 sm:p-12 md:p-16 bg-gray-50 flex flex-col justify-center">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Key Features</h2>
+                        <div class="space-y-6">
+                            <div v-for="feature in features" :key="feature.name" class="flex items-start">
+                                <!-- Feature Icon (can be replaced with an SVG icon) -->
+                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">{{ feature.name }}</h3>
+                                    <p class="mt-1 text-gray-600">{{ feature.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`,
     })
     app.mount('#app');
   </script>
